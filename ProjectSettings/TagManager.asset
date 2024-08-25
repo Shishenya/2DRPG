@@ -11,6 +11,8 @@ TagManager:
   - 
   - Water
   - UI
+  - Collision
+  - Player
   - 
   - 
   - 
@@ -34,9 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - LevelBounds
   m_SortingLayers:
   - name: Default
     uniqueID: 0
