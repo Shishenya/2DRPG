@@ -4,5 +4,6 @@
 /// </summary>
 public enum EffectType
 {
-    DamageEffect, // эффект, который снимает HP
+    ВleedingEffect, // кровотечение
+    RecoveryFatigue, // восстановление усталости
 }

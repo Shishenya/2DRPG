@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Ёффекты, наложенные на определенное существо
@@ -11,6 +11,9 @@ public class CreatureEffects : MonoBehaviour
     private PlayerStepCheck _playerStepCheck = null;
 
     private List<BaseEffects> _removeList = new List<BaseEffects>();
+
+    public event Action<BaseEffects> AddEffectEvent;
+    public event Action<BaseEffects> RemoveEffectEvent;
 
     private void Start()
     {
@@ -24,6 +27,7 @@ public class CreatureEffects : MonoBehaviour
     public void AddEffect(BaseEffects currentEffect)
     {
         _baseEffects.Add(currentEffect);
+        AddEffectEvent?.Invoke(currentEffect);
         currentEffect.EffectCompletedEvent += RemoveEffect;
     }
 
@@ -33,6 +37,7 @@ public class CreatureEffects : MonoBehaviour
     public void RemoveEffect(BaseEffects currentEffect)
     {
         Debug.Log("Ёффект закончилс€!");
+        RemoveEffectEvent?.Invoke(currentEffect);
         _removeList.Add(currentEffect);
         currentEffect.EffectCompletedEvent -= RemoveEffect;
     }

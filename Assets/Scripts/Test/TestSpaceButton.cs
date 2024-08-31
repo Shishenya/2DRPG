@@ -6,6 +6,7 @@ public class TestSpaceButton : MonoBehaviour
 {
     public Health health;
     public CreatureEffects creatureEffects;
+    public Fatigue fatigue;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +22,9 @@ public class TestSpaceButton : MonoBehaviour
     {
         ÂleedingEffect âleedingEffect = new ÂleedingEffect(4, 0, health, -5);
         creatureEffects.AddEffect(âleedingEffect);
+
+        RecoveryFatigueEffect recoveryFatigueEffect = new RecoveryFatigueEffect(10,0,fatigue, 2);
+        creatureEffects.AddEffect(recoveryFatigueEffect);
     }
 
 }

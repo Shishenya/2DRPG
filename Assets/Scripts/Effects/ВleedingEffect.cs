@@ -1,5 +1,5 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
+
 /// <summary>
 /// Эффект кровотечения
 /// </summary>
@@ -12,13 +12,39 @@ public class ВleedingEffect: BaseEffects
 
     public ВleedingEffect(int durationEffect, int movesLeft, Health health, int damage) : base (durationEffect, movesLeft)
     {
+        _effectType = EffectType.ВleedingEffect; // устанавливаем тип эффекта "Кровотечение"
         _health = health;
         _damage = damage;
+
+        _effectInGame_SO = GameEffectsStorage.Instance.GetEffectByType(_effectType);
     }
 
+    /// <summary>
+    /// Выполнение эффекта кровотечения
+    /// </summary>
     public override void DoEffect() {
         Debug.Log("Выполняю эффект кровотечения");
         _health.ChangeHealth(_damage);
         base.DoEffect();
+    }
+
+    /// <summary>
+    /// После завержения выполнения эффекта кровотечения
+    /// </summary>
+    public override void DoCompleteEffect()
+    {
+         // Ничего не происходит, но тут я еще подумаю
+    }
+
+    /// <summary>
+    /// Возвращает описание эффекта
+    /// </summary>
+    public override string GetDescription()
+    {
+        string description = $"<b>{_effectInGame_SO.Title}</b>.<br>" +
+            $"{_effectInGame_SO.Description}.<br>" +
+            $"Урон за ход: {_damage}.<br>" +
+            $"Осталось ходов: {MovesLeft}";
+        return description;
     }
 }

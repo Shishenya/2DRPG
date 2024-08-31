@@ -31,7 +31,7 @@ public class Fatigue : CreatureIndicators
     /// <summary>
     /// Изменение усталости
     /// </summary>
-    public void ChangeHealth(int value)
+    public void ChangeFatigue(float value)
     {
         _currentFatigue += value;
         ChangeFatigueEvent?.Invoke();
