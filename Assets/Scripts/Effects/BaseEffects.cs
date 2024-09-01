@@ -53,12 +53,15 @@ public class BaseEffects
     }
 
     /// <summary>
+    /// Виртуальный метод выполнение ээфекта при его добавлении
+    /// </summary>
+    public virtual void DoEffectAfterStart() { }
+
+    /// <summary>
     /// Виртуальный метод, который выполняется при завершение эффекта
     /// </summary>
-    public virtual void DoCompleteEffect()
-    {
+    public virtual void DoCompleteEffect() { }
 
-    }
 
     /// <summary>
     /// Виртуальный метод, который возвращает описание эффекта

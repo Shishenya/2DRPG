@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a4c9074c879fb4aac69751c901a36b, type: 3}
+  m_Name: FoodItem_SO_RedApple
+  m_EditorClassIdentifier: 
+  _id: 10001
+  _title: "\u041A\u0440\u0430\u0441\u043D\u043E\u0435 \u044F\u0431\u043B\u043E\u043A\u043E"
+  _description: "\u041F\u0438\u0442\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0435
+    \u043A\u0440\u0430\u0441\u043D\u043E\u0435 \u044F\u0431\u043B\u043E\u043A\u043E"
+  _type: 2
+  _maxStack: 10
+  _weight: 0.3
+  _basicAmount: 2
+  _sprite: {fileID: 21300000, guid: c45f64278c8c0d946a19ad2d755887d3, type: 3}
+  _effects: 02000000
+  _overlayEffects:
+  - {fileID: 3039443692243348893, guid: c4bd76a9a3700e54da55ff60c5f72723, type: 3}

@@ -6,4 +6,5 @@ public enum EffectType
 {
     ВleedingEffect, // кровотечение
     RecoveryFatigue, // восстановление усталости
+    RecoveryHealth, // восстановление здоровья
 }

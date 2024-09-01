@@ -34,6 +34,8 @@ public class Health : CreatureIndicators
     public void ChangeHealth(float value)
     {
         _currentHealth += value;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+
         ChangeHealthEvent?.Invoke();
     }
 

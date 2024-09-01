@@ -23,7 +23,7 @@ public class TestSpaceButton : MonoBehaviour
         ÂleedingEffect âleedingEffect = new ÂleedingEffect(4, 0, health, -5);
         creatureEffects.AddEffect(âleedingEffect);
 
-        RecoveryFatigueEffect recoveryFatigueEffect = new RecoveryFatigueEffect(10,0,fatigue, 2);
+        RecoveryFatigueEffect recoveryFatigueEffect = new RecoveryFatigueEffect(10,0,fatigue, 2, 5f);
         creatureEffects.AddEffect(recoveryFatigueEffect);
     }
 

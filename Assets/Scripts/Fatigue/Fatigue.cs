@@ -34,6 +34,8 @@ public class Fatigue : CreatureIndicators
     public void ChangeFatigue(float value)
     {
         _currentFatigue += value;
+        _currentFatigue = Math.Clamp(_currentFatigue, 0, _maxFatigue);
+
         ChangeFatigueEvent?.Invoke();
     }
 }

@@ -26,9 +26,14 @@ public class CreatureEffects : MonoBehaviour
     /// </summary>
     public void AddEffect(BaseEffects currentEffect)
     {
-        _baseEffects.Add(currentEffect);
-        AddEffectEvent?.Invoke(currentEffect);
-        currentEffect.EffectCompletedEvent += RemoveEffect;
+        _baseEffects.Add(currentEffect); // добавляем эффект в список
+        currentEffect.DoEffectAfterStart(); // выполняем данный эффект при его добавлении
+
+        if (currentEffect.MovesLeft > 0) // если эффект не мгновенный, то...
+        {
+            AddEffectEvent?.Invoke(currentEffect); // выполняем действия при его добавлении
+            currentEffect.EffectCompletedEvent += RemoveEffect; // добавляем его в спсок на удаление
+        }
     }
 
     /// <summary>
