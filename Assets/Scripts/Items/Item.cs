@@ -16,6 +16,8 @@ public class Item
     private protected string _description; // описание предмета
     private protected Sprite _sprite; // иконка
 
+    public int Id { get=> _id; }
+
     public Item(int id)
     {
         _id = id;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Инвентарь существа
@@ -8,6 +9,10 @@ using UnityEngine;
 public class CreatureInventory : MonoBehaviour
 {
     private Inventory _inventory; // инвентарь существа
+    public Inventory Inventory { get => _inventory; }
+
+    public event Action<int> AddItemToInventoryEvent; // эвент добавление предмета
+    public event Action<int> RemoveItemFromInventoryEvent; // эвент удаления предмета
 
     private void Awake()
     {
@@ -21,7 +26,10 @@ public class CreatureInventory : MonoBehaviour
     /// </summary>
     public void AddItemInInventory(Item item)
     {
-        _inventory.AddItem(item);
-        Debug.Log($"Добавили предмет в инветарь");
+        if (_inventory.AddItem(item))
+        {
+            AddItemToInventoryEvent?.Invoke(item.Id);
+            Debug.Log($"Добавили предмет в инветарь");
+        }
     }
 }
