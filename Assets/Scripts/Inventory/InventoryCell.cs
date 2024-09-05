@@ -1,28 +1,23 @@
-﻿
-/// <summary>
-/// Ячейка в инвентаре
-/// </summary>
-[System.Serializable]
-public class InventoryCell
+﻿using System.Collections.Generic;
+using Game.Items;
+
+
+namespace Game.Inventory
 {
-    private int _idItem; // ID предмета
-    private int _count; // его количество
-
-    public int IdItem { get=> _idItem; }
-    public int Count { get=> _count; }
-
-    public InventoryCell(int idItem, int count)
-    {
-        _idItem = idItem;
-        _count = count;
-    }
-
     /// <summary>
-    /// Обновление количества предметов
+    /// Ячейка в инвентаре
     /// </summary>
-    public void UpdateCount(int idItem, int value)
+    [System.Serializable]
+    public class InventoryCell
     {
-        if (idItem != _idItem) return;
-        _count += value;
+        private int _idItem; // ID предмета
+        public List<Item> _items; // предметы с данным ID
+
+        public InventoryCell(int idItem, List<Item> items)
+        {
+            _idItem = idItem;
+            _items = items;
+        }
+
     }
 }

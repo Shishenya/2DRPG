@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Game.Inventory;
 
 /// <summary>
 /// Канвас для работы с инвентарем игрока
@@ -25,13 +26,12 @@ public class PlayerInventoryCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        _creatureInventory.AddItemToInventoryEvent += UpdateCells;
-        UpdateCells(-1);
+
     }
 
     private void OnDisable()
     {
-        _creatureInventory.AddItemToInventoryEvent -= UpdateCells;
+        
     }
 
     private void Update()
@@ -40,12 +40,4 @@ public class PlayerInventoryCanvas : MonoBehaviour
             _background.SetActive(!_background.activeInHierarchy);
     }
 
-    /// <summary>
-    /// Обновление ячеек
-    /// </summary>
-    private void UpdateCells(int itemID)
-    {
-        for (int i = 0; i < _creatureInventory.Inventory.InventoryCells.Count; i++)        
-            _cells[i].Init(_creatureInventory.Inventory.InventoryCells[i]);        
-    }
 }

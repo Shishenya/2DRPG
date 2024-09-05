@@ -1,31 +1,33 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Game.Step;
 
-/// <summary>
-/// Время в и дата в игре
-/// </summary>
-public class GameTime : MonoBehaviour
+namespace Game.Time
 {
-    [Tooltip("Ход игрока")]
-    [SerializeField] private PlayerStepCheck _playerStepCheck;
-
-    private DateTime _dateTime = new DateTime();
-    private double _incrementMinutes = 1;
-
-    public DateTime DateTime { get => _dateTime; }
-
-    private void Awake()
-    {
-        _playerStepCheck.CompleteStepEvent += IncrementTime;
-    }
-
     /// <summary>
-    /// Увеличение времени
+    /// Время в и дата в игре
     /// </summary>
-    private void IncrementTime()
+    public class GameTime : MonoBehaviour
     {
-        _dateTime = _dateTime.AddMinutes(_incrementMinutes);
+        [Tooltip("Ход игрока")]
+        [SerializeField] private PlayerStepCheck _playerStepCheck;
+
+        private DateTime _dateTime = new DateTime();
+        private double _incrementMinutes = 1;
+
+        public DateTime DateTime { get => _dateTime; }
+
+        private void Awake()
+        {
+            _playerStepCheck.CompleteStepEvent += IncrementTime;
+        }
+
+        /// <summary>
+        /// Увеличение времени
+        /// </summary>
+        private void IncrementTime()
+        {
+            _dateTime = _dateTime.AddMinutes(_incrementMinutes);
+        }
     }
 }

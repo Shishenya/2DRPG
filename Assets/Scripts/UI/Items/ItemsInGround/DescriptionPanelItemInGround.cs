@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Game.Items;
 
 /// <summary>
 /// Панель с описанием предмета

@@ -2,73 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Game.Step;
 
-/// <summary>
-/// Базовый класс для эффектов
-/// </summary>
-[System.Serializable]
-public class BaseEffects
+namespace Game.Effects
 {
-    private protected int _durationEffect = 0; // Продолжительность эффекта
-    private protected int _movesLeft = 0; // Осталось ходов до конца эффекта
-    private protected EffectType _effectType; // Тип эффекта
-    private protected EffectInGame_SO _effectInGame_SO; // его описание
-
-    public int MovesLeft { get => _durationEffect - _movesLeft; }
-
-    public EffectType EffectType { get => _effectType; }
-
-    public event Action<BaseEffects> EffectCompletedEvent; // Эффект завершил свое действие
-
-    private bool _isCompleted = false;
-    public bool IsCompleted { get => _isCompleted; }
-
-
-    public BaseEffects(int durationEffect, int movesLeft)
-    {
-        _durationEffect = durationEffect;
-        _movesLeft = movesLeft;        
-    }
 
     /// <summary>
-    /// Увеличение количества ходов, когда эффект действует
+    /// Базовый класс для эффектов
     /// </summary>
-    public void IncrementMoveEffect()
+
+    public class BaseEffects : MonoBehaviour
     {
-        _movesLeft++;
-        if (_movesLeft == _durationEffect)
+        private protected Step.Step _step;
+        private protected EffectType _effectType;
+
+        public EffectType EffectType { get=> _effectType;  }
+
+        public virtual void Awake()
         {
-            _isCompleted = true;
-            DoCompleteEffect();
-            EffectCompletedEvent?.Invoke(this);
+            _step = GetComponent<Step.Step>();
         }
+
+        public virtual void ExecuteEffect() { } // выполнение эффекта в конце хода
+        public virtual void DoEffectAfterStart() { } // выполнение эффекта при получении эффекта
+        public virtual void DoEffectAfterCompleted() { } // выполнение эффекта после окончания
+        public virtual string GetDescription() { return string.Empty; } // описание эффекта
+
     }
-
-    /// <summary>
-    /// Виртуальный метод выполнения эффекта
-    /// </summary>
-    public virtual void DoEffect()
-    {
-        IncrementMoveEffect();
-    }
-
-    /// <summary>
-    /// Виртуальный метод выполнение ээфекта при его добавлении
-    /// </summary>
-    public virtual void DoEffectAfterStart() { }
-
-    /// <summary>
-    /// Виртуальный метод, который выполняется при завершение эффекта
-    /// </summary>
-    public virtual void DoCompleteEffect() { }
-
-
-    /// <summary>
-    /// Виртуальный метод, который возвращает описание эффекта
-    /// </summary>
-    public virtual string GetDescription() {
-        return string.Empty;
-    }
-
-
 }

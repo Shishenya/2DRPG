@@ -1,22 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Действие на окончание шага игрока
-/// </summary>
-public class EnemyStepCheck : MonoBehaviour
+namespace Game.Step
 {
-    [SerializeField] private PlayerStepCheck _playerStepCheck = null;
 
-    private void Awake()
+    /// <summary>
+    /// Действие на окончание шага игрока
+    /// </summary>
+    public class EnemyStepCheck : Step
     {
-        _playerStepCheck.CompleteStepEvent += EnemyStepStart;
-    }
+        [SerializeField] private PlayerStepCheck _playerStepCheck = null;
 
-    private void EnemyStepStart()
-    {
-        Debug.Log("Ходит враг!");
+        public override void Awake()
+        {
+            _playerStepCheck.CompleteStepEvent += EnemyStepStart;
+        }
+
+        private void EnemyStepStart()
+        {
+            Debug.Log("Ходит враг!");
+        }
     }
 }
