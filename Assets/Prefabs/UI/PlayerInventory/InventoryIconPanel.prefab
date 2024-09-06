@@ -302,6 +302,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536cb2a078e713d4a9c58f95ce4f5146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idCell: 0
-  _cellImage: {fileID: 1484419982743934089}
-  _countText: {fileID: 1484419984429495177}
+  _image: {fileID: 1484419982743934089}
+  _countTMP: {fileID: 1484419984429495177}

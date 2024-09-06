@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Game.Effects;
 
 /// <summary>
 /// Предметы, которые имеют эффект при использовании
@@ -7,11 +8,8 @@ using UnityEngine;
 public class ItemDoEffectSO: Item_SO
 {
     [Tooltip("Эффекты, которые накладывает данный предмет при использовании")]
-    [SerializeField] private protected List<EffectType> _effects;
+    [SerializeField] private protected List<EffectParameters> _effects;
 
-    //[Tooltip("Эффекты, которые накладываются при применении")]
-    //[SerializeField] private protected List<OverlayEffect> _overlayEffects;
-
-    public List<EffectType> Effects { get => _effects; }
-    //public List<OverlayEffect> OverlayEffects { get=> _overlayEffects;}
+    public List<EffectParameters> Effects { get => _effects; }
+    
 }

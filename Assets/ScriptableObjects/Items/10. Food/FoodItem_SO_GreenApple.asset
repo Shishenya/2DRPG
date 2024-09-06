@@ -15,12 +15,17 @@ MonoBehaviour:
   _id: 10002
   _title: "\u0417\u0435\u043B\u0435\u043D\u043E\u0435 \u044F\u0431\u043B\u043E\u043A\u043E"
   _description: "\u0417\u0435\u043B\u0435\u043D\u043E\u0435 \u044F\u0431\u043B\u043E\u043A\u043E.
-    \u0421\u043D\u0438\u0437\u0438\u0442 \u0432\u0430\u0448\u0443 \u0443\u0441\u0442\u0430\u043B\u043E\u0441\u0442\u044C"
+    \u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442 \u0432\u0430\u0448\u0435
+    \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
   _type: 2
   _maxStack: 10
   _weight: 0.3
   _basicAmount: 3
   _sprite: {fileID: 21300000, guid: 6856b9e83aa0cab4fbcad95201839a5a, type: 3}
-  _effects: 02000000
-  _overlayEffects:
-  - {fileID: 3039443692243348893, guid: 57d648b53eb94e9478a95ebc2b7550da, type: 3}
+  _effects:
+  - type: 2
+    values:
+    - 10
+    - 1
+    - 5
+    - 0

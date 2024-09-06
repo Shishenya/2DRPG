@@ -31,8 +31,8 @@ namespace UI.Effects
 
         private void Awake()
         {
-            //_playerEffects.AddEffectEvent += AddEffectToPanel;
-            //_playerEffects.RemoveEffectEvent += RemoveEffectToPanel;
+            _playerEffects.AddEffectEvent += AddEffectToPanel;
+            _playerEffects.RemoveEffectEvent += RemoveEffectToPanel;
         }
 
         void Start() { }

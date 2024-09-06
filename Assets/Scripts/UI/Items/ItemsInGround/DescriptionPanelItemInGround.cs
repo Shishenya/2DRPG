@@ -2,32 +2,39 @@ using UnityEngine;
 using TMPro;
 using Game.Items;
 
-/// <summary>
-/// Панель с описанием предмета
-/// </summary>
-public class DescriptionPanelItemInGround : MonoBehaviour
+
+namespace UI.Game.Items
 {
-    [Tooltip("Куда выводить описание")]
-    [SerializeField] private TMP_Text _descriptionText;
-
-    private Item _current;
 
     /// <summary>
-    /// Инициализация
+    /// Панель с описанием предмета
     /// </summary>
-    public void Init(Item item)
+    public class DescriptionPanelItemInGround : MonoBehaviour
     {
-        _current = item;
-        _descriptionText.text = _current.GetDescription();
-    }
+        [Tooltip("Куда выводить описание")]
+        [SerializeField] private TMP_Text _descriptionText;
 
-    /// <summary>
-    /// реинициализация
-    /// </summary>
-    public void ReInit()
-    {
-        _current = null;
-        _descriptionText.text = string.Empty;
-    }
+        private Item _current;
 
+        /// <summary>
+        /// Инициализация
+        /// </summary>
+        public void Init(Item item)
+        {
+            _current = item;
+            _descriptionText.text = _current.GetDescription();
+            gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// реинициализация
+        /// </summary>
+        public void ReInit()
+        {
+            _current = null;
+            _descriptionText.text = string.Empty;
+            gameObject.SetActive(false);
+        }
+
+    }
 }

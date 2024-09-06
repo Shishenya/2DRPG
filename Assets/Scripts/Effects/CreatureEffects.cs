@@ -12,8 +12,8 @@ namespace Game.Effects
 
         private List<BaseEffects> _effects = new List<BaseEffects>();
 
-        public event Action AddEffectEvent;
-        public event Action RemoveEffectEvent;
+        public event Action<BaseEffects> AddEffectEvent;
+        public event Action<BaseEffects> RemoveEffectEvent;
 
         private void Start() { }
 
@@ -23,7 +23,7 @@ namespace Game.Effects
         public void AddEffect(BaseEffects effect)
         {
             _effects.Add(effect);
-            AddEffectEvent?.Invoke();
+            AddEffectEvent?.Invoke(effect);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Game.Effects
         public void RemoveEffect(BaseEffects effect)
         {
             _effects.Remove(effect);
-            RemoveEffectEvent?.Invoke();
+            RemoveEffectEvent?.Invoke(effect);
         }
  
     }

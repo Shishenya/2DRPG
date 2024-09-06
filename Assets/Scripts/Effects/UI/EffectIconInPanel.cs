@@ -4,10 +4,10 @@ using TMPro;
 using UnityEngine.EventSystems;
 using Game.Effects;
 using Game.Step;
+using System.Collections;
 
 namespace UI.Effects
 {
-
     /// <summary>
     /// Иконка с эффектом на игроке
     /// </summary>
@@ -30,13 +30,23 @@ namespace UI.Effects
             _descriptionEffectCanvas = descriptionEffectCanvas;
             _effectSprite.sprite = GetSpriteByEffect();
 
-            playerStepCheck.CompleteStepEvent += UpdateMovesLeft;
-            UpdateMovesLeft();
+            _playerStepCheck.CompleteStepEvent += UpdateMovesLeft;
+            StartCoroutine(UpdateMovesLeftRoutine());
         }
 
-        private void UpdateMovesLeft()
+        /// <summary>
+        /// обновление количества ходов в тексте
+        /// </summary>
+        private void UpdateMovesLeft() =>        
+            _movesLeftTMP.text = _currentEffect.MovesLeft.ToString();
+        
+        /// <summary>
+        /// Корутина обновления ходов
+        /// </summary>
+        private IEnumerator UpdateMovesLeftRoutine()
         {
-            //_movesLeftTMP.text = _currentEffect.MovesLeft.ToString();
+            yield return new WaitForEndOfFrame();
+            _movesLeftTMP.text = _currentEffect.MovesLeft.ToString();
         }
 
         /// <summary>
@@ -50,13 +60,18 @@ namespace UI.Effects
         /// </summary>
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log("Навели мышкой на эффект");
+            //Debug.Log("Навели мышкой на эффект");
             _descriptionEffectCanvas.Init(_currentEffect);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            Debug.Log("Отвели мышку с эффектом");
+            //Debug.Log("Отвели мышку с эффектом");
+            _descriptionEffectCanvas.ReInit();
+        }
+
+        private void OnDisable()
+        {
             _descriptionEffectCanvas.ReInit();
         }
     }

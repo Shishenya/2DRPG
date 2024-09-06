@@ -6,6 +6,7 @@ namespace Game.Items
     /// <summary>
     /// Тип предмета - еда
     /// </summary>
+    [System.Serializable]
     public class Food : Item
     {
 

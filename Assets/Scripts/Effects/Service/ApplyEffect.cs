@@ -26,12 +26,16 @@ namespace Game.Effects
             switch (effectType)
             {
                 case EffectType.ВleedingEffect: // Кровотечение
-                    obj.AddComponent(typeof(ВleedingEffect));
-                    obj.GetComponent<ВleedingEffect>()?.SetBaseValue(values);
+                    ВleedingEffect bleedingEffect = obj.AddComponent<ВleedingEffect>();
+                    bleedingEffect?.SetBaseValue(values);
                     break;
-                case EffectType.RecoveryFatigue:
+                case EffectType.RecoveryFatigue: // Восстановление усталости
+                    RecoveryFatigueEffect recoveryFatigueEffect = obj.AddComponent<RecoveryFatigueEffect>();
+                    recoveryFatigueEffect.SetBaseValue(values);
                     break;
-                case EffectType.RecoveryHealth:
+                case EffectType.RecoveryHealth: // Восстановление здоровья
+                    RecoveryHealthEffect recoveryHealthEffect = obj.AddComponent<RecoveryHealthEffect>();
+                    recoveryHealthEffect.SetBaseValue(values);
                     break;
             }
         }
