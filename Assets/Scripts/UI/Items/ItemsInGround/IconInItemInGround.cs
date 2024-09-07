@@ -14,7 +14,7 @@ namespace UI.Game.Items
     public class IconInItemInGround : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         [Tooltip("Иконка предмета")]
-        [SerializeField] private Image _image;
+        [SerializeField] private Image _image;       
 
         private Item _currentItem; // текущий предмет
         public Item CurrentItem { get => _currentItem; }
@@ -22,12 +22,17 @@ namespace UI.Game.Items
         private CreatureInventory _inventory = null; // инвентарь игрока
         private ItemsInGround _itemsInGround = null; // откуда берутся предметы
 
+        private readonly Color _hoverColor = Color.yellow;
+        private Color _originColor;
+
         public void Init(Item currentItem, GameObject descriptionPanel, CreatureInventory inventory, ItemsInGround itemsInGround)
         {
             _currentItem = currentItem;
             _descriptionPanel = descriptionPanel.GetComponent<DescriptionPanelItemInGround>();
             _inventory = inventory;
             _itemsInGround = itemsInGround;
+
+            _originColor = _image.color;
 
             ChangeImage();
         }
@@ -38,6 +43,7 @@ namespace UI.Game.Items
         public void OnPointerEnter(PointerEventData eventData)
         {
             _descriptionPanel.Init(_currentItem);
+            _image.color = _hoverColor;
         }
 
         /// <summary>
@@ -46,6 +52,7 @@ namespace UI.Game.Items
         public void OnPointerExit(PointerEventData eventData)
         {
             DisableDesciptionPanel();
+            _image.color = _originColor;
         }
 
         /// <summary>
@@ -54,12 +61,14 @@ namespace UI.Game.Items
         private void DisableDesciptionPanel()
         {
             _descriptionPanel.ReInit();
+            _image.color = _originColor;
         }
 
         private void OnDisable()
         {
             _inventory = null;
             _descriptionPanel.ReInit();
+            _image.color = _originColor;
         }
 
         /// <summary>
@@ -72,7 +81,7 @@ namespace UI.Game.Items
         /// </summary>
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_inventory.AddInventory(_currentItem)) // есди добавили предмет в инвентарь, то удаляем его из панели иконок
+            if (_inventory.AddItemToInventory(_currentItem)) // есди добавили предмет в инвентарь, то удаляем его из панели иконок
             {
                 _itemsInGround.RemoveItem(_currentItem); // удаляем предмет с земли
             }

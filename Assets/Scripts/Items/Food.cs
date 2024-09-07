@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Game.Effects;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Items
@@ -7,8 +8,9 @@ namespace Game.Items
     /// Тип предмета - еда
     /// </summary>
     [System.Serializable]
-    public class Food : Item
+    public class Food : Item, IUsebaleItem
     {
+        private List<EffectParameters> _effects;
 
         public Food(int id) : base(id)
         {
@@ -20,7 +22,8 @@ namespace Game.Items
         /// </summary>
         public override void SetConcrectParameters()
         {
-            ItemFood_SO itemFood_SO = (ItemFood_SO)GameItemsStorage.Instance.GetItemSOByID(_id);            
+            ItemFood_SO itemFood_SO = (ItemFood_SO)GameItemsStorage.Instance.GetItemSOByID(_id);
+            _effects = itemFood_SO.Effects;
         }
 
         /// <summary>
@@ -33,6 +36,23 @@ namespace Game.Items
                 $"Накладываются эффекты: <br>";
 
             return result;
+        }
+
+        /// <summary>
+        /// Исопльзование еды - накладывание эффетов
+        /// </summary>
+        public void Use(GameObject target)
+        {
+            Apply(target);
+        }
+
+        /// <summary>
+        /// Наложение эффектов
+        /// </summary>
+        public void Apply(GameObject target)
+        {
+            foreach (var item in _effects)            
+                ApplyEffect.Instance.Apply(target, item.type, item.values);            
         }
     }
 }

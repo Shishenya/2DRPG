@@ -19,6 +19,7 @@ namespace Game.Inventory
         public List<InventoryCell> Inventory { get => _inventory; }
 
         public event Action<Item> AddItemToInventoryEvent; // событие добавления предмета в инвентарь
+        public event Action<Item> RemoveItemFromInventoryEvent; // событие удаления предмета из инвентаря
 
         /// <summary>
         /// Проверяем, есть ли данный предмет в инвентаре
@@ -46,7 +47,7 @@ namespace Game.Inventory
         /// <summary>
         /// Добавляет предмет в инвентарь
         /// </summary>
-        public bool AddInventory(Item item)
+        public bool AddItemToInventory(Item item)
         {
             if (item == null) return false;
 
@@ -65,6 +66,20 @@ namespace Game.Inventory
             }
 
             return false; // не удалость добавить предмет
+        }
+
+        /// <summary>
+        /// Удаляет предмет из инвентаря
+        /// </summary>
+        public bool RemoveItemFromInventory(InventoryCell cell, Item item)
+        {
+            cell.RemoveItem(item); // удаляем предмет
+            if (cell.CountItems == 0) // если больше в ячейке нет предметов, то удаляем ячейку            
+                _inventory.Remove(cell);
+            
+
+            RemoveItemFromInventoryEvent?.Invoke(item); // обновляем
+            return true;
         }
 
     }

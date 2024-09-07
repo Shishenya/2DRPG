@@ -14,6 +14,9 @@ namespace UI.Game.Items
         [Tooltip("Бэкгроунд для вызова по кнопке")]
         [SerializeField] private GameObject _background = null;
 
+        [Tooltip("Панель с описанием")]
+        [SerializeField] private DescriptionPanelItemInInventory _desciptionPanel;
+
         [Tooltip("Инвентарь игрока")]
         [SerializeField] private CreatureInventory _creatureInventory;
 
@@ -29,12 +32,14 @@ namespace UI.Game.Items
         private void OnEnable()
         {
             _creatureInventory.AddItemToInventoryEvent += UpdateInventoryCanvas;
+            _creatureInventory.RemoveItemFromInventoryEvent += UpdateInventoryCanvas;
             UpdateInventoryCanvas(null);
         }
 
         private void OnDisable()
         {
             _creatureInventory.AddItemToInventoryEvent -= UpdateInventoryCanvas;
+            _creatureInventory.RemoveItemFromInventoryEvent -= UpdateInventoryCanvas;
         }
 
         /// <summary>
@@ -43,7 +48,7 @@ namespace UI.Game.Items
         private void UpdateInventoryCanvas(Item item)
         {
             for (int i = 0; i < _creatureInventory.Inventory.Count; i++)           
-                _cells[i].Init(_creatureInventory.Inventory[i]);
+                _cells[i].Init(_creatureInventory.Inventory[i], _desciptionPanel, _creatureInventory.gameObject, _creatureInventory);
             
             for (int i = _creatureInventory.Inventory.Count; i < _cells.Count; i++)            
                 _cells[i].Clear();            
@@ -51,8 +56,17 @@ namespace UI.Game.Items
 
         private void Update()
         {
-            if (Input.GetKeyDown(_inventoryKey))            
-                _background.SetActive(!_background.activeInHierarchy);            
+            if (Input.GetKeyDown(_inventoryKey))
+                LoadInventory();
+        }
+
+        /// <summary>
+        /// Загрущка и выгрущка панели с инвентарем
+        /// </summary>
+        private void LoadInventory()
+        {
+            _background.SetActive(!_background.activeInHierarchy);
+            if (_background.activeInHierarchy == false) _desciptionPanel.gameObject.SetActive(false);
         }
 
     }

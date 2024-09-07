@@ -14,14 +14,14 @@ namespace Game.Items
         [Tooltip("ID предметов, которые лежат на земле")]
         [SerializeField] private List<int> _itemsID = new List<int>();
 
-        private List<Item> _items = new List<Item>();  // сами предметы
+        private protected List<Item> _items = new List<Item>();  // сами предметы
 
         public List<Item> Items { get => _items; }
 
         public event Action<Item> RemoveItemEvent; // эвент удаление предмета
         public event Action IsEmptyItemsEvent; // эвент, когда закончились предметы на земле
 
-        private SpriteRenderer _spriteRenderer = null;
+        private protected SpriteRenderer _spriteRenderer = null;
 
         private void Awake()
         {
@@ -47,7 +47,7 @@ namespace Game.Items
         /// <summary>
         /// Изменение иконки предметов на земле
         /// </summary>
-        private void ChangeIcons()
+        private protected void ChangeIcons()
         {
             if (_items.Count > 1)
                 _spriteRenderer.sprite = GameItemsStorage.Instance.DefaultSprite;
@@ -76,7 +76,7 @@ namespace Game.Items
         /// <summary>
         /// Вошли в колайдер с предметами
         /// </summary>
-        private void OnTriggerEnter2D(Collider2D collision)
+        private protected void OnTriggerEnter2D(Collider2D collision)
         {
             if (!IsPlayer(collision)) return;
             ItemsInGroundCanvas.Instance.Init(this);
@@ -85,7 +85,7 @@ namespace Game.Items
         /// <summary>
         /// Вышли из коллайдера с предметами
         /// </summary>
-        private void OnTriggerExit2D(Collider2D collision)
+        private protected void OnTriggerExit2D(Collider2D collision)
         {
             if (!IsPlayer(collision)) return;
             ItemsInGroundCanvas.Instance.ReInit();
@@ -94,7 +94,7 @@ namespace Game.Items
         /// <summary>
         /// Проверка на игрока
         /// </summary>
-        private bool IsPlayer(Collider2D collision) => collision.TryGetComponent<PlayerMove>(out PlayerMove move);
+        private protected bool IsPlayer(Collider2D collision) => collision.TryGetComponent<PlayerMove>(out PlayerMove move);
 
     }
 }

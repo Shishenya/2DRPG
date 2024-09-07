@@ -23,9 +23,18 @@ namespace Game.Inventory
             _items = items;
         }
 
+        /// <summary>
+        /// Добавление предмета
+        /// </summary>
         public void AddItem(Item item)
         {
             _items.Add(item);
+        }
+
+        public void RemoveItem(Item item)
+        {
+            _items.Remove(item);
+            if (CountItems == 0) _idItem = -1;
         }
 
     }
