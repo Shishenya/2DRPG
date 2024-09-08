@@ -32,8 +32,8 @@ namespace Game.Items
         public override string GetDescription()
         {
             string result = base.GetDescription();
-            result += $"<br>" +
-                $"Накладываются эффекты: <br>";
+            result += $"<br>"+
+                $"<b>Накладываются эффекты:</b><br>{ApplyEffect.Instance.GetDesriptionEffect(_effects)}";
 
             return result;
         }
