@@ -13,5 +13,6 @@ namespace Game.Effects
         public EffectType type;
         [Tooltip("Какие параметры накладывает")]
         public string[] values;
-    }
+    } 
+
 }

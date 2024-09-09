@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Game.Parameters
 {
     /// <summary>
@@ -6,17 +8,20 @@ namespace Game.Parameters
     [System.Serializable]
     public class Сharacteristics
     {
-
-        private int _strength; // Сила
+        [Tooltip("Сила")]
+        [SerializeField] private int _strength; // Сила
         public int Strength { get => _strength; }
 
-        private int _stamina; // Выносливость
+        [Tooltip("Выносливость")]
+        [SerializeField] private int _stamina; // Выносливость
         public int Stamina { get => _stamina; }
 
-        private int _agility; // Ловкость
+        [Tooltip("Ловкость")]
+        [SerializeField] private int _agility; // Ловкость
         public int Agility { get => _agility; }
 
-        private int _attention; // Внимательность
+        [Tooltip("Внимательность")]
+        [SerializeField] private int _attention; // Внимательность
         public int Attention { get => _attention; }
 
         public Сharacteristics(int strength, int stamina, int agility, int attention)

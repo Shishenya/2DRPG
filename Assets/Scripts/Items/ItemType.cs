@@ -7,4 +7,5 @@ public enum ItemType
     Trash, // мусор
     Food, // еда
     Weapon, // оружие
+    Armor, // броня
 }

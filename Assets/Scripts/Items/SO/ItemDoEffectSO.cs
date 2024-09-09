@@ -7,6 +7,9 @@ using Game.Effects;
 /// </summary>
 public class ItemDoEffectSO: Item_SO
 {
+    [Space(15)]
+    [Header("Эффекты, которые применяются")]
+    [Space(10)]
     [Tooltip("Эффекты, которые накладывает данный предмет при использовании")]
     [SerializeField] private protected List<EffectParameters> _effects;
 

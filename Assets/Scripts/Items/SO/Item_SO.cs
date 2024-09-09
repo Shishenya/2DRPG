@@ -6,6 +6,8 @@ using UnityEngine;
 /// </summary>
 public class Item_SO : ScriptableObject
 {
+    [Header("Основные настройки")]
+    [Space(10)]
     [Tooltip("ID предмета")]
     [SerializeField] private protected int _id;
     [Tooltip("Название предмета")]
@@ -30,6 +32,6 @@ public class Item_SO : ScriptableObject
     public ItemType Type { get => _type; }
     public int MaxStack { get => _maxStack; }
     public float Weight { get => _weight; }
-    public int BasicAmount { get => _basicAmount; }    
+    public int BasicAmount { get => _basicAmount; }
     public Sprite Sprite { get => _sprite; }
 }
