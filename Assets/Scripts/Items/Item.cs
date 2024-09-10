@@ -58,10 +58,19 @@ namespace Game.Items
         {
             string result = $"<b>{_title}</b><br>" +
                 $"{_description}<br>" +
+                $"Тип предмета: <b>{GetTypeItem()}</b><br>" +
                 $"Базовая цена: <b>{_basicAmount}</b><br>" +
                 $"Вес: <b>{_weight}</b><br>";
 
             return result;
+        }
+
+        /// <summary>
+        /// Возвращает тип предмета
+        /// </summary>
+        public virtual string GetTypeItem()
+        {
+            return "Разное";
         }
 
     }

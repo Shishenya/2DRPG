@@ -69,6 +69,9 @@ namespace Game.Items
                     return food;
                 case ItemType.Weapon:
                     break;
+                case ItemType.Armor:
+                    Armor armor = new Armor(id);
+                    return armor;
                 default:
                     break;
             }

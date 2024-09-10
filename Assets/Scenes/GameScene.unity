@@ -156,6 +156,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b43236f87f2a4fa4a89dce47c2e1509a, type: 2}
   - {fileID: 11400000, guid: 32bbdd6fc06be7b42be98fbdce85a4f6, type: 2}
   - {fileID: 11400000, guid: 18638123a6eef3c4ca9cec7bd975ef63, type: 2}
+  - {fileID: 11400000, guid: be9347f4f26f0254f956d11f41920ea6, type: 2}
   _defaultSprite: {fileID: 21300000, guid: 66645ee2ee3f83445b9d6115649849a8, type: 3}
 --- !u!4 &66797960
 Transform:
@@ -6418,6 +6419,8 @@ MonoBehaviour:
     chance: 100
   - idItem: 10002
     chance: 10
+  - idItem: 12001
+    chance: 100
 --- !u!212 &1589337571
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6817,6 +6820,8 @@ GameObject:
   - component: {fileID: 1754820594}
   - component: {fileID: 1754820595}
   - component: {fileID: 1754820596}
+  - component: {fileID: 1754820597}
+  - component: {fileID: 1754820598}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -7035,6 +7040,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxCells: 20
   _inventory: []
+--- !u!114 &1754820597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754820583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51dff33804fe97a4985fb95479b23352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1754820598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754820583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d843349272246a46b9a3978e7e28500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1772895763
 GameObject:
   m_ObjectHideFlags: 0

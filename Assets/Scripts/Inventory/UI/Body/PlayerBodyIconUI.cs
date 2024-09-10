@@ -13,6 +13,6 @@ namespace UI.Game.Body
         [Tooltip("Картинка для предмета")]
         [SerializeField] private Image _image;
 
-        private protected PlayerBodyIconType _bodyIconType;
+        //private protected PlayerBodyIconType _bodyIconType;
     }
 }

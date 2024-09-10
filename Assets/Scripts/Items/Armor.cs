@@ -14,6 +14,10 @@ namespace Game.Items
         private Сharacteristics _changeСharacteristics; // характеристики
         private int _armorValue; // очки брони
 
+        public ArmorType ArmorType { get => _armorType; }
+        public Сharacteristics ChangeСharacteristics { get => _changeСharacteristics; }
+        public int ArmorValue { get => _armorValue; }
+
         public Armor(int id) : base(id)
         {
             SetConcrectParameters();
@@ -39,6 +43,32 @@ namespace Game.Items
             result += $"";
 
             return result;
+        }
+
+        /// <summary>
+        /// Возвращает тип предмета
+        /// </summary>
+        public override string GetTypeItem()
+        {
+            switch (_armorType)
+            {
+                case ArmorType.Helmet:
+                    return "Броня (шлем)";
+                case ArmorType.Chest:
+                    return "Броня (доспехи)";
+                case ArmorType.Leggings:
+                    return "Броня (поножи)";
+                case ArmorType.Gloves:
+                    return "Броня (перчатки)";
+                case ArmorType.Boots:
+                    return "Броня (ботинки)";
+                case ArmorType.Ring:
+                    return "Аксессуары (кольцо)";
+                case ArmorType.Necklace:
+                    return "Аксессуары (ожерелье)";
+            }
+
+            return base.GetTypeItem();
         }
     }
 }

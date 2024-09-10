@@ -24,6 +24,9 @@ namespace Game.Parameters
         [SerializeField] private int _attention; // Внимательность
         public int Attention { get => _attention; }
 
+        /// <summary>
+        /// Создание новых характеристик
+        /// </summary>
         public Сharacteristics(int strength, int stamina, int agility, int attention)
         {
             _strength = strength;
@@ -32,6 +35,14 @@ namespace Game.Parameters
             _attention = attention;
         }
 
+        /// <summary>
+        /// Сложение характеристик
+        /// </summary>
+        public static Сharacteristics operator + (Сharacteristics first, Сharacteristics second)
+        {
+            return new Сharacteristics(first.Strength + second.Strength, first.Stamina + second.Stamina,
+                first.Agility + second.Agility, first.Attention + second.Attention);
+        }
 
     }
 }

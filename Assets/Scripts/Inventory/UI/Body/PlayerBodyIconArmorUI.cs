@@ -12,6 +12,6 @@ namespace UI.Game.Body
         [Tooltip("Тип доспеха для данной иконки")]
         [SerializeField] private ArmorType _armorType;
 
-        private new protected PlayerBodyIconType _bodyIconType = PlayerBodyIconType.Armor;
+        //private new protected PlayerBodyIconType _bodyIconType = PlayerBodyIconType.Armor;
     }
 }

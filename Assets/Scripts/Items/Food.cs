@@ -54,5 +54,13 @@ namespace Game.Items
             foreach (var item in _effects)            
                 ApplyEffect.Instance.Apply(target, item.type, item.values);            
         }
+
+        /// <summary>
+        /// Возвращает тип предмета
+        /// </summary>
+        public override string GetTypeItem()
+        {
+            return "Еда";
+        }
     }
 }
