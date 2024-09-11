@@ -12,6 +12,9 @@ namespace UI.Game.Body
     /// </summary>
     public class PlayerBodyCanvas : MonoBehaviour
     {
+        [Tooltip("Панель с телом")]
+        [SerializeField] private GameObject _background = null;
+
         [Tooltip("Тело игрока")]
         [SerializeField] private CreatureBody _body;
 
@@ -20,9 +23,17 @@ namespace UI.Game.Body
 
         private Dictionary<ArmorType, PlayerBodyIconArmorUI> _slotsDictionary = new Dictionary<ArmorType, PlayerBodyIconArmorUI>();
 
+        private readonly KeyCode _bodyKey = KeyCode.Tab;
+
         private void Awake()
         {
             CreateDictionary();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(_bodyKey))
+                LoadBody();
         }
 
         private void OnEnable()
@@ -34,6 +45,15 @@ namespace UI.Game.Body
         {
             foreach (var item in _slots)            
                 _slotsDictionary.Add(item.ArmorType, item);            
+        }
+
+        /// <summary>
+        /// Загрузка и выгрузка панели с телом 
+        /// </summary>
+        private void LoadBody()
+        {
+            _background.SetActive(!_background.activeInHierarchy);
+            //if (_background.activeInHierarchy == false) _desciptionPanel.gameObject.SetActive(false);
         }
 
         /// <summary>

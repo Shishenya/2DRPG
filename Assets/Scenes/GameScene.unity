@@ -293,6 +293,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18638123a6eef3c4ca9cec7bd975ef63, type: 2}
   - {fileID: 11400000, guid: be9347f4f26f0254f956d11f41920ea6, type: 2}
   - {fileID: 11400000, guid: fb739aae4f1617043a010e86c94b5e2f, type: 2}
+  - {fileID: 11400000, guid: 45cb6943cc9d4764d9f73bac158fe86d, type: 2}
+  - {fileID: 11400000, guid: 6d05d9b808451c041add1359bdc0b8f9, type: 2}
   _defaultSprite: {fileID: 21300000, guid: 66645ee2ee3f83445b9d6115649849a8, type: 3}
 --- !u!4 &66797960
 Transform:
@@ -3455,6 +3457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d86ac35c5de84aa74b5388e3882d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _background: {fileID: 266233481}
   _body: {fileID: 1754820597}
   _slots:
   - {fileID: 2131995653}
@@ -6864,10 +6867,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemsID: 
   _randomItems:
-  - idItem: 10001
+  - idItem: 13001
     chance: 100
-  - idItem: 10002
-    chance: 10
+  - idItem: 13002
+    chance: 100
   - idItem: 12001
     chance: 100
   - idItem: 12002
