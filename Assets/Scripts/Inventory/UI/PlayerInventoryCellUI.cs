@@ -72,11 +72,16 @@ namespace UI.Game.Items
             if (_inventoryCell == null) return;
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                if (_inventoryCell._items[0] is IUsebaleItem usable)
+                // Используемый предмет
+                if (_inventoryCell._items[0] is IUsebaleItem usable) 
                 {
                     usable.Use(_player);
                     _inventory.RemoveItemFromInventory(_inventoryCell, _inventoryCell._items[0]);
                 }
+
+                // Одеваемый предмет
+                if (_inventoryCell._items[0] is IWearable wearable)
+                    wearable.Wearable(_player);
             }
         }
     }

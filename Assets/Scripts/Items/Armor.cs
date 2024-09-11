@@ -1,3 +1,4 @@
+using Game.Body;
 using Game.Parameters;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Game.Items
     /// <summary>
     /// Тип предмета - броня
     /// </summary>
-    public class Armor : Item
+    public class Armor : Item, IWearable
     {
         private protected ArmorType _armorType; // тип брони
         private Сharacteristics _changeСharacteristics; // характеристики
@@ -40,7 +41,8 @@ namespace Game.Items
         public override string GetDescription()
         {
             string result = base.GetDescription();
-            result += $"";
+            result += $"<br>Очки брони: <b>{_armorValue}</b><br>" +
+                $"Изменяет характеристики:<br>{_changeСharacteristics.GetDescription()}";
 
             return result;
         }
@@ -69,6 +71,15 @@ namespace Game.Items
             }
 
             return base.GetTypeItem();
+        }
+
+        /// <summary>
+        /// Использование предмета - одевает его на себя
+        /// </summary>
+        public void Wearable(GameObject target)
+        {
+            CreatureBody body = target.GetComponent<CreatureBody>();
+            body?.SetItemToSlot(this, _armorType);
         }
     }
 }

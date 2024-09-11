@@ -25,6 +25,6 @@ MonoBehaviour:
   _armorValue: 10
   "_change\u0421haracteristics":
     _strength: 0
-    _stamina: 0
+    _stamina: 2
     _agility: 0
     _attention: 0

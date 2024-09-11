@@ -47,5 +47,12 @@ public class PlayerPanelProgressBar : MonoBehaviour
 
         _valuePanel.sizeDelta = sizeDelta;
 
+        UpdateTMP();
     }
+
+    /// <summary>
+    /// Обновление текстового поля
+    /// </summary>
+    private void UpdateTMP() =>    
+        _valueTMP.text = $"{_creatureIndicator.CurrentValue}/{_creatureIndicator.MaxValue}";    
 }

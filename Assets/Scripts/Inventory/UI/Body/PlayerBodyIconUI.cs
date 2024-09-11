@@ -11,7 +11,7 @@ namespace UI.Game.Body
     public class PlayerBodyIconUI : MonoBehaviour
     {
         [Tooltip("Картинка для предмета")]
-        [SerializeField] private Image _image;
+        [SerializeField] private protected Image _image;
 
         //private protected PlayerBodyIconType _bodyIconType;
     }

@@ -43,7 +43,8 @@ namespace Game.Parameters
         private void CalcArmorPoint()
         {
             foreach (KeyValuePair<ArmorType, Items.Armor> item in _creatureBody.CreatureBodyDictionary)
-                _armorPoint += item.Value.ArmorValue;
+                if (item.Value != null)
+                    _armorPoint += item.Value.ArmorValue;
         }
     }
 }
