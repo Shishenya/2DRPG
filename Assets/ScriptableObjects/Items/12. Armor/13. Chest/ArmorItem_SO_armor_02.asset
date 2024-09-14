@@ -23,7 +23,7 @@ MonoBehaviour:
   _basicAmount: 180
   _sprite: {fileID: 21300000, guid: 21ee1b83f992cbf4c89701d74653597e, type: 3}
   _armorType: 2
-  _armorValue: 420
+  _armorValue: 12
   "_change\u0421haracteristics":
     _strength: 0
     _stamina: 0

@@ -1,4 +1,5 @@
 using Game.Body;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ namespace Game.Parameters
 
         public int armorPoint { get => _armorPoint; }
 
+        public event Action ChangeArmorPointEvent;
+
         private void Awake()
         {
             _creatureBody = GetComponent<CreatureBody>();
@@ -21,7 +24,7 @@ namespace Game.Parameters
 
         private void Start()
         {
-            CalcArmorPoint();
+
         }
 
         private void OnEnable()
@@ -34,17 +37,22 @@ namespace Game.Parameters
             _creatureBody.SetArmorEvent -= CalcArmorPoint;
         }
 
-        private void CalcArmorPoint(ArmorType type) =>
-            CalcArmorPoint();
-
         /// <summary>
-        /// Подсчет очков брони
+        /// Пересчет очков защиты
         /// </summary>
-        private void CalcArmorPoint()
+        private void CalcArmorPoint(ChangeBodySlot changeBodySlot)
         {
-            foreach (KeyValuePair<ArmorType, Items.Armor> item in _creatureBody.CreatureBodyDictionary)
-                if (item.Value != null)
-                    _armorPoint += item.Value.ArmorValue;
+            //CalcArmorPoint();
+            if (_creatureBody.CreatureBodyDictionary.ContainsKey(changeBodySlot.armorType))
+            {
+                if (changeBodySlot.prevItem != null)
+                    _armorPoint -= changeBodySlot.prevItem.ArmorValue;
+
+                _armorPoint += changeBodySlot.nowItem.ArmorValue;
+                ChangeArmorPointEvent?.Invoke();
+            }
         }
+
+
     }
 }

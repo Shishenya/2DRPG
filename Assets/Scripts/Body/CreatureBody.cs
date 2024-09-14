@@ -22,7 +22,7 @@ namespace Game.Body
         private Dictionary<ArmorType, Armor> _creatureBodyDictionary = new Dictionary<ArmorType, Armor>(); // Словарь с предметами
         public Dictionary<ArmorType, Armor> CreatureBodyDictionary { get => _creatureBodyDictionary; }
 
-        public event Action<ArmorType> SetArmorEvent; // установка предмета в слот для брони
+        public event Action<ChangeBodySlot> SetArmorEvent; // установка предмета в слот для брони
 
         private void Awake()
         {
@@ -50,8 +50,10 @@ namespace Game.Body
         {
             if (_creatureBodyDictionary.ContainsKey(armorType) && item.ArmorType == armorType)
             {
+                if (_creatureBodyDictionary[armorType] == item) return;
+                ChangeBodySlot changeBodySlot = new ChangeBodySlot(armorType, _creatureBodyDictionary[armorType], item);
                 _creatureBodyDictionary[armorType] = item;
-                SetArmorEvent?.Invoke(armorType);
+                SetArmorEvent?.Invoke(changeBodySlot);
             }
         }
     }

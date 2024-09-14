@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using Game.Inventory;
 using Game.Items;
+using Player.Move;
 
 namespace UI.Game.Items
 {
@@ -19,6 +20,9 @@ namespace UI.Game.Items
 
         [Tooltip("Инвентарь игрока")]
         [SerializeField] private CreatureInventory _creatureInventory;
+
+        [Tooltip("Компонент отвечающий за движения игрока")]
+        [SerializeField] private PlayerMove _playerMove = null;
 
         private List<PlayerInventoryCellUI> _cells = new List<PlayerInventoryCellUI>(); // ячейки с предметами
 
@@ -67,6 +71,7 @@ namespace UI.Game.Items
         {
             _background.SetActive(!_background.activeInHierarchy);
             if (_background.activeInHierarchy == false) _desciptionPanel.gameObject.SetActive(false);
+            _playerMove.enabled = !_background.activeInHierarchy;
         }
 
     }

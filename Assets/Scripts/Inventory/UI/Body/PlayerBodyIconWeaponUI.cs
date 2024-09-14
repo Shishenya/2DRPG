@@ -12,6 +12,6 @@ namespace UI.Game.Body
         [Tooltip("Тип оружия для данной иконки")]
         [SerializeField] private WeaponType _weaponType;
 
-        private new protected PlayerBodyIconType _bodyIconType = PlayerBodyIconType.Weapon;
+        //private new protected PlayerBodyIconType _bodyIconType = PlayerBodyIconType.Weapon;
     }
 }
