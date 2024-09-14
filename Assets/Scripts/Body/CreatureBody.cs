@@ -1,3 +1,4 @@
+using Game.Inventory;
 using Game.Items;
 using System;
 using System.Collections;
@@ -24,9 +25,13 @@ namespace Game.Body
 
         public event Action<ChangeBodySlot> SetArmorEvent; // установка предмета в слот для брони
 
+        private CreatureInventory _creatureInventory = null;
+
         private void Awake()
         {
             CreateDictionary();
+            _creatureInventory = GetComponent<CreatureInventory>();
+            _creatureInventory.RemoveItemFromInventoryEvent += CheckItemIsDressed;
         }
 
         /// <summary>
@@ -51,9 +56,38 @@ namespace Game.Body
             if (_creatureBodyDictionary.ContainsKey(armorType) && item.ArmorType == armorType)
             {
                 if (_creatureBodyDictionary[armorType] == item) return;
+
                 ChangeBodySlot changeBodySlot = new ChangeBodySlot(armorType, _creatureBodyDictionary[armorType], item);
                 _creatureBodyDictionary[armorType] = item;
                 SetArmorEvent?.Invoke(changeBodySlot);
+            }
+        }
+
+        /// <summary>
+        /// Снимает предмет с себя
+        /// </summary>
+        public void RemoveArmor(ArmorType armorType)
+        {
+            if (_creatureBodyDictionary.ContainsKey(armorType))
+            {
+                ChangeBodySlot changeBodySlot = new ChangeBodySlot(armorType, _creatureBodyDictionary[armorType], null);
+                _creatureBodyDictionary[armorType] = null;
+                SetArmorEvent?.Invoke(changeBodySlot);
+            }
+        }
+
+        /// <summary>
+        /// Проверяет, одет ли предмет
+        /// </summary>
+        private void CheckItemIsDressed(Item item)
+        {
+            foreach (KeyValuePair<ArmorType, Armor> slot in _creatureBodyDictionary)
+            {
+                if (slot.Value == item)
+                {
+                    RemoveArmor(slot.Key);
+                    return;
+                }
             }
         }
     }

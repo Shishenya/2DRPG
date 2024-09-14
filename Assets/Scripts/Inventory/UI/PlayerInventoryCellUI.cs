@@ -4,24 +4,32 @@ using UnityEngine.UI;
 using TMPro;
 using Game.Inventory;
 using Game.Items;
+using System.Collections.Generic;
 
 namespace UI.Game.Items
 {
     /// <summary>
     /// Ячейка в инвентаре
     /// </summary>
-    public class PlayerInventoryCellUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public class PlayerInventoryCellUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IPointerDownHandler
     {
         [Tooltip("Иконка предмета")]
         [SerializeField] private Image _image;
 
-        [Tooltip("")]
+        [Tooltip("Количество предметов в ячейке (текстовое поле)")]
         [SerializeField] private TMP_Text _countTMP;
+
+        [Tooltip("Иконка для перетаскивания")]
+        [SerializeField] private GameObject _dragIcon = null;
 
         private InventoryCell _inventoryCell;
         private DescriptionPanelItemInInventory _desciptionPanel;
         private GameObject _player;
         private CreatureInventory _inventory;
+
+        private bool _isDragging = false; // перетаскиваю иконку
+
+        private Image _dragImage { get => _dragIcon.GetComponent<Image>(); }
 
         /// <summary>
         /// Инициализация и обновление
@@ -44,6 +52,13 @@ namespace UI.Game.Items
             _inventoryCell = null;
             _image.sprite = null;
             _countTMP.text = string.Empty;
+        }
+
+        private void OnDisable()
+        {
+            _isDragging = false;
+            _dragIcon.SetActive(false);
+            _dragImage.sprite = null;
         }
 
         /// <summary>
@@ -73,7 +88,7 @@ namespace UI.Game.Items
             if (eventData.button == PointerEventData.InputButton.Right)
             {
                 // Используемый предмет
-                if (_inventoryCell._items[0] is IUsebaleItem usable) 
+                if (_inventoryCell._items[0] is IUsebaleItem usable)
                 {
                     usable.Use(_player);
                     _inventory.RemoveItemFromInventory(_inventoryCell, _inventoryCell._items[0]);
@@ -82,6 +97,62 @@ namespace UI.Game.Items
                 // Одеваемый предмет
                 if (_inventoryCell._items[0] is IWearable wearable)
                     wearable.Wearable(_player);
+            }
+        }
+
+        /// <summary>
+        /// Зажали ЛКМ
+        /// </summary>
+        void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+        {
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                _isDragging = true;
+                _dragImage.sprite = GameItemsStorage.Instance.GetItemSOByID(_inventoryCell.IdItem).Sprite;
+                _dragIcon.SetActive(true);
+            }
+        }
+
+        /// <summary>
+        /// Отжали ЛКМ
+        /// </summary>
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                _isDragging = false;
+                _dragImage.sprite = null;
+                _dragIcon.SetActive(false);
+
+                DeleteItemFromInventory(eventData);
+            }
+        }
+
+        /// <summary>
+        /// Перетаскивание иконки
+        /// </summary>
+        private void Update()
+        {
+            if (_isDragging)
+                _dragIcon.transform.position = Input.mousePosition;
+        }
+
+        /// <summary>
+        /// Удаление предмета из инвентаря
+        /// </summary>
+        private void DeleteItemFromInventory(PointerEventData eventData)
+        {
+            List<RaycastResult> raycastResult = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, raycastResult);
+
+            if (raycastResult.Count > 0 && raycastResult[0].gameObject != null)
+            {
+                DeleteCellUI deleteComponent = raycastResult[0].gameObject.GetComponent<DeleteCellUI>();
+                if (deleteComponent != null)
+                {
+                    Debug.Log("Удаляю предмет!");
+                    _inventory.RemoveItemFromInventory(_inventoryCell, _inventoryCell.GetFirstItem());
+                }
             }
         }
     }

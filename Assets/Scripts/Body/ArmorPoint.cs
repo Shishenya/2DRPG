@@ -42,17 +42,16 @@ namespace Game.Parameters
         /// </summary>
         private void CalcArmorPoint(ChangeBodySlot changeBodySlot)
         {
-            //CalcArmorPoint();
             if (_creatureBody.CreatureBodyDictionary.ContainsKey(changeBodySlot.armorType))
             {
                 if (changeBodySlot.prevItem != null)
                     _armorPoint -= changeBodySlot.prevItem.ArmorValue;
 
-                _armorPoint += changeBodySlot.nowItem.ArmorValue;
+                if (changeBodySlot.nowItem != null)
+                    _armorPoint += changeBodySlot.nowItem.ArmorValue;
+
                 ChangeArmorPointEvent?.Invoke();
             }
         }
-
-
     }
 }

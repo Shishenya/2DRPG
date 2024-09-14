@@ -37,5 +37,16 @@ namespace Game.Inventory
             if (CountItems == 0) _idItem = -1;
         }
 
+        /// <summary>
+        /// Возвращает первый предмет в ячейке
+        /// </summary>
+        public Item GetFirstItem()
+        {
+            if (_items != null && _items.Count > 0)
+                return _items[0];
+
+            return null;
+        }
+
     }
 }
